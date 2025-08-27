@@ -8,7 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/CucumberFeatures/sugestoes_pesquisa.feature",
         plugin = "pretty",
-        tags = "@Test1",
+        glue = "test.java.main.gotasdeteconologia.steps",
+        tags = "@pesquisa",
         monochrome = true,
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )

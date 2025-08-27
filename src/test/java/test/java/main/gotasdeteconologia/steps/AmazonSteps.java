@@ -1,5 +1,6 @@
 package test.java.main.gotasdeteconologia.steps;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -25,4 +26,28 @@ public class AmazonSteps {
         }
     }
 
+    @Then("o sistema não deve exibir nenhuma sugestão")
+    public void oSistemaNaoDeveExibirNenhumaSugestao() throws InterruptedException {
+        sugestoesPesquisaLogic.oSistemaNaoDeveExibirNenhumaSugestao();
+    }
+
+    @When("o usuario digitar {string} na barra de pesquisa")
+    public void oUsuarioDigitarNaBarraDePesquisa(String arg0) throws InterruptedException {
+        sugestoesPesquisaLogic.oUsuarioDigitarNaBarraDePesquisa();
+    }
+
+    @And("continua digitando {string}")
+    public void continuaDigitando(String arg0) throws InterruptedException {
+        sugestoesPesquisaLogic.continuaDigitando();
+    }
+
+    @And("clica em uma sugestão exibida")
+    public void clicaEmUmaSugestaoExibida() {
+        sugestoesPesquisaLogic.clicaEmUmaSugestaoExibida();
+    }
+
+    @Then("o usuário deve ser redirecionado para a página de resultados da pesquisa correspondente")
+    public void oUsuarioDeveSerRedirecionadoParaAPaginaDeResultadosDaPesquisaCorrespondente() {
+        sugestoesPesquisaLogic.oUsuarioDeveSerRedirecionadoParaAPaginaDeResultadosDaPesquisaCorrespondente();
+    }
 }
