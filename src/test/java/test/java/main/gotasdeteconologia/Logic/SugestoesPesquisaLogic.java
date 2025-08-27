@@ -1,5 +1,6 @@
 package test.java.main.gotasdeteconologia.Logic;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -136,8 +137,7 @@ public class SugestoesPesquisaLogic {
         }
     }
 
-    @AfterEach
     public void fechaBrowser() {
-        driver.close();
+        driver.quit();
     }
 }

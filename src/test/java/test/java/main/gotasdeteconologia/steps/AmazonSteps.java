@@ -1,9 +1,11 @@
 package test.java.main.gotasdeteconologia.steps;
 
+import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.AfterEach;
 import test.java.main.gotasdeteconologia.Logic.SugestoesPesquisaLogic;
 
 public class AmazonSteps {
@@ -49,5 +51,10 @@ public class AmazonSteps {
     @Then("o usuário deve ser redirecionado para a página de resultados da pesquisa correspondente")
     public void oUsuarioDeveSerRedirecionadoParaAPaginaDeResultadosDaPesquisaCorrespondente() {
         sugestoesPesquisaLogic.oUsuarioDeveSerRedirecionadoParaAPaginaDeResultadosDaPesquisaCorrespondente();
+    }
+
+    @After
+    public void tearDown() {
+        sugestoesPesquisaLogic.fechaBrowser();
     }
 }
