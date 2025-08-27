@@ -1,9 +1,8 @@
-package test.java.main.gotasdeteconologia.Logic;
+package test.java.main.gotasdeteconologia.logic;
 
-import org.junit.After;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.time.StopWatch;
 import org.junit.Assert;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,13 +17,15 @@ import java.util.List;
 
 import static java.lang.Thread.sleep;
 
-public class SugestoesPesquisaLogic {
+@Slf4j
+public class AmazonLogic {
 
     private static WebDriver driver;
     private static WebDriverWait wait;
+    private long tempoRespostaBuscaMs;
 
 
-    public  SugestoesPesquisaLogic() {
+    public AmazonLogic() {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();
@@ -135,6 +136,46 @@ public class SugestoesPesquisaLogic {
         if (!currentUrl.contains(encodedQuery)) {
             throw new AssertionError("URL does not contain the search query. Expected to find: " + encodedQuery + " in " + currentUrl);
         }
+    }
+
+    public void oTempoDeCarregamentoDeveSerMenorQueSegundos() {
+        long startTime = System.currentTimeMillis();
+        long endTime = System.currentTimeMillis();
+
+        double loadTimeInSeconds = (endTime - startTime) / 1000.0;
+        log.info("O tempo de carregamendo deve ser menor que 3 segundos");
+        Assert.assertFalse("Tempo de carregamento foi maior que 3 segundos!", loadTimeInSeconds >= 3);
+    }
+
+
+    public void oTempoDeRespostaDaBuscaDeveSerMenorQueSegundos() {
+        StopWatch stopWatch = new StopWatch();
+        long tempoMillis = stopWatch.getTime();
+        int segundosMax = 0;
+        Assert.assertTrue("Tempo de carregamento maior que o esperado",
+                tempoMillis <= segundosMax * 1000);
+        log.info("Tempo de resposta menor do que 5 segundos");
+    }
+
+    public void realizoUmaBuscaPor(String termoBusca) {
+
+        WebElement campoBusca = driver.findElement(By.id("twotabsearchtextbox"));
+        campoBusca.sendKeys(termoBusca);
+
+        long inicio = System.currentTimeMillis();
+        WebElement botaoBusca = driver.findElement(By.id("nav-search-submit-button"));
+        botaoBusca.click();
+
+        // Aguardar resultado (exemplo usando presença de um elemento dos resultados)
+        WebElement resultado = driver.findElement(By.cssSelector("div.s-main-slot"));
+        long fim = System.currentTimeMillis();
+
+        tempoRespostaBuscaMs = fim - inicio;
+    }
+
+    public void oTempoDeRespostaDaBuscaDeveSerMaiorOuIgualASegundos(int segundos) {
+        double tempoSegundos = tempoRespostaBuscaMs / 1000.0;
+        assert tempoSegundos >= segundos : "Tempo de resposta foi menor do que o esperado!";
     }
 
     public void fechaBrowser() {
