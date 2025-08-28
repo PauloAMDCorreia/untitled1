@@ -16,6 +16,7 @@ import java.time.Duration;
 import java.util.List;
 
 import static java.lang.Thread.sleep;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
@@ -128,10 +129,8 @@ public class AmazonLogic {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.urlContains("phone"));
 
-        // Get current URL
         String currentUrl = driver.getCurrentUrl();
 
-        // Assert URL contains the search query (encoded)
         String searchQuery = "phone";
         String encodedQuery = URLEncoder.encode(searchQuery, StandardCharsets.UTF_8);
         if (!currentUrl.contains(encodedQuery)) {
@@ -144,8 +143,13 @@ public class AmazonLogic {
         long endTime = System.currentTimeMillis();
 
         double loadTimeInSeconds = (endTime - startTime) / 1000.0;
-        log.info("O tempo de carregamendo deve ser menor que 3 segundos");
-        Assert.assertFalse("Tempo de carregamento foi maior que 3 segundos!", loadTimeInSeconds >= 3);
+        log.info("O tempo de carregamento deve ser menor que 3 segundos");
+
+        if (loadTimeInSeconds < 3) {
+            assertTrue(loadTimeInSeconds < 3, "Tempo de carregamento foi menor que 3 segundos: " + loadTimeInSeconds + "s");
+        } else {
+            assertFalse(loadTimeInSeconds >= 3, "Tempo de carregamento foi maior que 3 segundos: " + loadTimeInSeconds + "s");
+        }
     }
 
 
@@ -167,7 +171,7 @@ public class AmazonLogic {
         WebElement botaoBusca = driver.findElement(By.id("nav-search-submit-button"));
         botaoBusca.click();
 
-        // Aguardar resultado (exemplo usando presença de um elemento dos resultados)
+        // Aguardar resultado
         WebElement resultado = driver.findElement(By.cssSelector("div.s-main-slot"));
         long fim = System.currentTimeMillis();
 

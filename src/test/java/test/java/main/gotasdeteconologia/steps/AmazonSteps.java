@@ -89,6 +89,4 @@ public class AmazonSteps {
         sugestoesPesquisaLogic.fechaBrowser();
     }
 
-
-
 }
