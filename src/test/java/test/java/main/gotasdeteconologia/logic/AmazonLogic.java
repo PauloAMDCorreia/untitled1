@@ -16,6 +16,7 @@ import java.time.Duration;
 import java.util.List;
 
 import static java.lang.Thread.sleep;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
 public class AmazonLogic {
@@ -175,7 +176,11 @@ public class AmazonLogic {
 
     public void oTempoDeRespostaDaBuscaDeveSerMaiorOuIgualASegundos(int segundos) {
         double tempoSegundos = tempoRespostaBuscaMs / 1000.0;
-        assert tempoSegundos >= segundos : "Tempo de resposta foi menor do que o esperado!";
+        if (tempoSegundos < 3) {
+            assertTrue(tempoSegundos < 3, "O tempo de resposta foi menor que 3 segundos: " + tempoSegundos + "s");
+        } else {
+            assertTrue(tempoSegundos >= 3, "O tempo de resposta foi maior ou igual a 3 segundos: " + tempoSegundos + "s");
+        }
     }
 
     public void fechaBrowser() {

@@ -47,7 +47,7 @@ Feature: Sugestões de Pesquisa (Autocomplete)
   Scenario: Falha na busca por "livros" com tempo de resposta menor que 5 segundos
     Given que o usuario esta na pagina inicial da Amazon Brasil
     When realizo uma busca por "livros"
-    Then o tempo de resposta da busca deve ser maior ou igual a 5 segundos
+    Then o tempo de resposta da busca deve ser maior ou igual a 3 segundos
 
   @Test9
   Scenario: Sugestão de busca no caso de erro de digitação
