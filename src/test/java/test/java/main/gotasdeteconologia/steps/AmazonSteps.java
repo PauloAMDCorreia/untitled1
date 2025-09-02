@@ -5,11 +5,15 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import lombok.extern.slf4j.Slf4j;
+
+import org.slf4j.LoggerFactory;
 import test.java.main.gotasdeteconologia.logic.AmazonLogic;
 
-@Slf4j
+import java.util.logging.Logger;
+
+
 public class AmazonSteps {
+    private static final Logger log = (Logger) LoggerFactory.getLogger(AmazonSteps.class);
     AmazonLogic sugestoesPesquisaLogic = new AmazonLogic();
 
     @Given("que o usuario esta na pagina inicial da Amazon Brasil")
