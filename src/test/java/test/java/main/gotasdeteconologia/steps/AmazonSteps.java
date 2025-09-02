@@ -1,23 +1,24 @@
 package test.java.main.gotasdeteconologia.steps;
 
-import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import test.java.main.gotasdeteconologia.logic.AmazonLogic;
 
-import java.util.logging.Logger;
 
 
 public class AmazonSteps {
-    private static final Logger log = (Logger) LoggerFactory.getLogger(AmazonSteps.class);
-    AmazonLogic sugestoesPesquisaLogic = new AmazonLogic();
+    private static final Logger log = LoggerFactory.getLogger(AmazonSteps.class);
+    private AmazonLogic sugestoesPesquisaLogic;
+
 
     @Given("que o usuario esta na pagina inicial da Amazon Brasil")
     public void queOUsuarioEstaNaPaginaInicialDaAmazonBrasil() {
+        sugestoesPesquisaLogic = new AmazonLogic();
         sugestoesPesquisaLogic.acessaHome();
         log.info("Acessa a homepage da Amazon");
 
@@ -87,11 +88,6 @@ public class AmazonSteps {
     @Then("o tempo de resposta da busca deve ser maior ou igual a {int} segundos")
     public void oTempoDeRespostaDaBuscaDeveSerMaiorOuIgualASegundos(int arg0) {
         sugestoesPesquisaLogic.oTempoDeRespostaDaBuscaDeveSerMaiorOuIgualASegundos(arg0);
-    }
-
-    @After
-    public void tearDown() {
-        sugestoesPesquisaLogic.fechaBrowser();
     }
 
 }

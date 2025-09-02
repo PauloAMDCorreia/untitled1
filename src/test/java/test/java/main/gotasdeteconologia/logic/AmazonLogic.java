@@ -5,9 +5,9 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import test.java.main.gotasdeteconologia.steps.Hooks;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -19,17 +19,17 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
+
 public class AmazonLogic {
 
-    private static WebDriver driver;
-    private static WebDriverWait wait;
+    private  WebDriver driver;
+    private  WebDriverWait wait;
     private long tempoRespostaBuscaMs;
 
 
     public AmazonLogic() {
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.manage().window().maximize();
+        this.driver = Hooks.driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public void acessaHome() {
@@ -184,7 +184,4 @@ public class AmazonLogic {
         }
     }
 
-    public void fechaBrowser() {
-        driver.quit();
-    }
 }
