@@ -1,6 +1,5 @@
 package test.java.main.gotasdeteconologia.logic;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.StopWatch;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -19,7 +18,7 @@ import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Slf4j
+
 public class AmazonLogic {
 
     private static WebDriver driver;
@@ -143,7 +142,6 @@ public class AmazonLogic {
         long endTime = System.currentTimeMillis();
 
         double loadTimeInSeconds = (endTime - startTime) / 1000.0;
-        log.info("O tempo de carregamento deve ser menor que 3 segundos");
 
         if (loadTimeInSeconds < 3) {
             assertTrue(loadTimeInSeconds < 3, "Tempo de carregamento foi menor que 3 segundos: " + loadTimeInSeconds + "s");
@@ -159,7 +157,6 @@ public class AmazonLogic {
         int segundosMax = 0;
         Assert.assertTrue("Tempo de carregamento maior que o esperado",
                 tempoMillis <= segundosMax * 1000);
-        log.info("Tempo de resposta menor do que 5 segundos");
     }
 
     public void realizoUmaBuscaPor(String termoBusca) {
