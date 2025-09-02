@@ -67,4 +67,3 @@ Feature: Sugestões de Pesquisa (Autocomplete)
 #      | Safari    | Desktop     |
 #      | Chrome    | Mobile      |
 #      | Firefox   | Mobile      |
-#  Teste CI

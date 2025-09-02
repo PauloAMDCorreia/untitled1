@@ -2,16 +2,16 @@ name: Amazon CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout reposioty
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Java run
