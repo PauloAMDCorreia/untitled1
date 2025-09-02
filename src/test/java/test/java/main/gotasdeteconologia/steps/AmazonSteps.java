@@ -16,6 +16,7 @@ public class AmazonSteps {
     public void queOUsuarioEstaNaPaginaInicialDaAmazonBrasil() {
         sugestoesPesquisaLogic.acessaHome();
         log.info("Acessa a homepage da Amazon");
+
     }
     @When("o usuário digita {string} na barra de pesquisa")
     public void oUsuárioDigitaNaBarraDePesquisa(String termo) {
